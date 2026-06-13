@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:23 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/10 19:41:52 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/11 19:47:42 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,21 @@ void	alg_sele(t_list **stack_a, t_list **stack_b, float dis, t_flags *flags)
 	if (!*stack_a || !(*stack_a)->next)
 		return ;
 	if (flags->simple)
-		min_max_sort(stack_a, stack_b, flags);
+		insert_sort(stack_a, stack_b, flags);
 	if (flags->medium)
 		chunk_sort(stack_a, stack_b, flags);
 	if (flags->complex)
-		quick_sort_a(stack_a, stack_b, ft_lstsize(*stack_a), flags);
+		ft_radix_sort(stack_a, stack_b, flags);
+		// quick_sort_a(stack_a, stack_b, ft_lstsize(*stack_a), flags);
 		// chunk_quick_sort(stack_a, stack_b, flags);
 	if (flags->adaptive && dis < 0.2)
-		return (min_max_sort(stack_a, stack_b, flags));
+		return (insert_sort(stack_a, stack_b, flags));
 	if (flags->adaptive && dis < 0.5)
 		return (chunk_sort(stack_a, stack_b, flags));
 	if (flags->adaptive)
-		quick_sort_a(stack_a, stack_b, ft_lstsize(*stack_a), flags);
+		ft_radix_sort(stack_a, stack_b, flags);
+		// insert_sort(stack_a, stack_b, flags); // should go O(n log n) with dis > 0.5
+		// quick_sort_a(stack_a, stack_b, ft_lstsize(*stack_a), flags);
 		// chunk_quick_sort(stack_a, stack_b, flags);
 		// ft_radix_sort(stack_a, stack_b, flags);
 		// quick_sort_a(stack_a, stack_b, ft_lstsize(*stack_a), flags);

@@ -45,16 +45,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $@ $^
-# $(NAME):
-# 	$(CC) $(CFLAGS) -c $(SRC)
-# 	ar rcs $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
-
-# bonus: fclean
-# 	$(CC) $(CFLAGS) -c $(SRC_BONUS)
-# 	ar rcs $(NAME) $(OBJ_BONUS)
 
 # USAGE: make test ARG="--bench 1 3 2 5 4"
 test: all main.c
@@ -67,10 +60,6 @@ test: all main.c
 	fi
 # 	./test_push_swap 1 2 3 4 5
 
-# test: all main.c
-# 	$(CC) $(CFLAGS) main.c $(NAME) -o test_push_swap
-# 	$(MAKE) clean
-# 	./test_push_swap 1 2 3 4 5
 
 $(NAME_BONUS): $(OBJ_BONUS)
 	ar rcs $@ $^

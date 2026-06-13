@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 19:57:31 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/09 20:11:39 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/11 20:35:58 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ int	ft_isnum(char *num)
 	return (1);
 }
 
-// void	free_stack(t_list **stack)
-// {
-// 	t_list	*current;
-// 	t_list	*next;
+void	free_stack(t_list **stack)
+{
+	t_list	*current;
+	t_list	*next;
 
-// 	if (!stack || !*stack)
-// 		return ;
-// 	current = *stack;
-// 	while (current)
-// 	{
-// 		next = current->next;
-// 		free(current);
-// 		current = next;
-// 	}
-// 	*stack = NULL;
-// }
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*stack = NULL;
+}
 
 void	free_string(char **str)
 {

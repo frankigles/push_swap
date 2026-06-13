@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:09:55 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/10 21:41:42 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/11 20:14:28 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	print_flags(t_flags *flags);
 
 // compute_disorder.c
 float	compute_disorder(t_list **stack_a);
-int		ft_sqrt(int number);
 
 // bench.c
 void	print_bench(float disorder, t_flags *flags);
@@ -111,26 +110,33 @@ void	print_bench(float disorder, t_flags *flags);
 // algo_utils.c
 int		find_min_val(t_list *stack);
 int		find_max_val(t_list *stack);
-int		get_cost(t_list *a, t_list *b, t_list *node);
-int		get_moves(t_list *stack, t_list *target);
-
-// min_max_sort.c
-void	min_max_sort(t_list **a, t_list **b, t_flags *f);
-t_list	*get_target(t_list *a, int val_b);
-
-// complex.c
-void	run_pure_quick_sort(t_list **stack_a, t_list **b, t_flags *flags);
 int		find_max_pos(t_list *stack);
-void	chunk_quick_sort(t_list **a, t_list **b, t_flags *flags);
-void	push_back_to_a(t_list **stack_a, t_list **stack_b, t_flags *flags);
+int		ft_sqrt(int number);
+
+// insert_sort.c
+void	insert_sort(t_list **a, t_list **b, t_flags *f);
+
+// insert_sort_utils.c
+t_list	*find_min(t_list *stack);
+t_list	*find_max(t_list *stack);
+t_list	*get_target(t_list *stack, int val, char mode);
+int		get_moves(t_list *stack, t_list *target);
+int		get_cost(t_list *a, t_list *b, t_list *node);
 
 // radix_sort.c
 void	ft_radix_sort(t_list **a, t_list **b, t_flags *flags);
 // medium.c
 void	chunk_sort(t_list **stack_a, t_list **stack_b, t_flags *flags);
 
+// chunk_quick_sort.c
+// void	index_stack(t_list *stack);
+// void	run_pure_quick_sort(t_list **stack_a, t_list **b, t_flags *flags);
+// void	chunk_quick_sort(t_list **a, t_list **b, t_flags *flags);
+// void	push_back_to_a(t_list **stack_a, t_list **stack_b, t_flags *flags);
+
 // qs.c
-void	quick_sort_a(t_list **a, t_list **b, int size, t_flags *flags);
+// void	quick_sort_a(t_list **a, t_list **b, int size, t_flags *flags);
+
 /* FT_PRINTF */
 int		ft_printf_fd(int fd, char const *format, ...);
 int		ft_putstr_fd(char *str, int fd);

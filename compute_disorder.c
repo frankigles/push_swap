@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 19:23:57 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/10 21:41:32 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/11 20:13:33 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,4 @@ float	compute_disorder(t_list **stack_a)
 		curr = curr->next;
 	}
 	return ((float) mistakes / total_pairs);
-}
-int	ft_sqrt(int number)
-{
-	long	res;
-
-	if (number < 0)
-		return (0);
-	if (number == 0 || number == 1)
-		return (number);
-	res = 1;
-	while (res * res <= number)
-		res++;
-	return ((int)res - 1);
 }

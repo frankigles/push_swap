@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 17:56:27 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/09 19:42:16 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/11 20:30:39 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,49 +40,40 @@ int	find_max_val(t_list *stack)
 	return (max);
 }
 
-int	get_pos(t_list *stack, t_list *target)
+int	find_max_pos(t_list *stack)
 {
-	int	i;
+	int	max_val;
+	int	idx;
+	int	max_pos;
 
-	i = 0;
-	if (!target)
+	if (!stack)
 		return (-1);
+	max_val = stack->val;
+	idx = 0;
+	max_pos = 0;
 	while (stack)
 	{
-		if (stack == target)
-			return (i);
+		if (stack->val > max_val)
+		{
+			max_val = stack->val;
+			max_pos = idx;
+		}
 		stack = stack->next;
-		i++;
+		idx++;
 	}
-	return (-1);
+	return (max_pos);
 }
 
-/* Calculates moves needed: positive for ra, negative for rra */
-/* (+ = forward, - = backward) */
-
-int	get_moves(t_list *stack, t_list *target)
+int	ft_sqrt(int number)
 {
-	int	pos;
-	int	size;
+	long	res;
 
-	pos = get_pos(stack, target);
-	size = ft_lstsize(stack);
-	if (pos <= size / 2)
-		return (pos);
-	return (pos - size);
-}
-
-/* Calculates absolute cost for comparison */
-int	get_cost(t_list *a, t_list *b, t_list *node)
-{
-	int	cost_a;
-	int	cost_b;
-
-	cost_a = get_moves(a, node);
-	cost_b = get_moves(b, get_target(b, node->val));
-	if (cost_a < 0)
-		cost_a = -cost_a;
-	if (cost_b < 0)
-		cost_b = -cost_b;
-	return (cost_a + cost_b);
+	if (number < 0)
+		return (0);
+	if (number == 0 || number == 1)
+		return (number);
+	res = 1;
+	while (res * res <= number)
+		res++;
+	return ((int)res - 1);
 }
