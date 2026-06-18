@@ -1,92 +1,90 @@
-NAME = push_swap
-NAME_BONUS = checker
+NAME            = push_swap
+NAME_BONUS      = checker
+CC              = cc
+CFLAGS          = -Wall -Wextra -Werror -g 
+RM              = rm -rf
+MKDIR           = mkdir -p
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-CINCLUDES = -Iincludes
+# Directorios separados para los objetos
+OBJ_DIR         = obj
+OBJ_BONUS_DIR   = obj_bonus
 
-SRC_DIR     = .
-ALGO_DIR    = algorithms
-ACT_DIR     = actions
-PRINTF_DIR	= ft_printf
+CINCLUDES       = -I. -Ibonus -Ibonus/gnl
 
-BON_DIR		= bonus
+SRCS            = actions/pa.c \
+                  actions/pb.c \
+                  actions/push.c \
+                  actions/ra.c \
+                  actions/rb.c \
+                  actions/rev_rotate.c \
+                  actions/rotate.c \
+                  actions/rr.c \
+                  actions/rra.c \
+                  actions/rrb.c \
+                  actions/rrr.c \
+                  actions/sa.c \
+                  actions/sb.c \
+                  actions/ss.c \
+                  actions/swap.c \
+                  algorithms/radix_sort.c \
+                  algorithms/insert_sort.c \
+                  algorithms/insert_sort.utils.c \
+                  algorithms/algo_utils.c \
+                  algorithms/chunk_sort.c \
+                  ft_printf/ft_print_utils.c \
+                  ft_printf/ft_printf.c \
+                  bench.c \
+                  compute_disorder.c \
+                  flags_utils.c \
+                  ft_split.c \
+                  list_utils.c \
+                  main.c \
+                  print_utils.c \
+                  utils.c
 
-SRC         = $(wildcard $(SRC_DIR)/*.c) \
-              $(wildcard $(ACT_DIR)/*.c) \
-              $(wildcard $(ALGO_DIR)/*.c) \
-              $(wildcard $(PRINTF_DIR)/*.c)
-# 			  actions/pa.c \
-			  actions/pb.c \
-			  actions/push.c \
-			  actions/ra.c \
-			  actions/rb.c \
-			  actions/rev_rotate.c \
-			  actions/rotate.c \
-			  actions/rr.c \
-			  actions/rra.c \
-			  actions/rrb.c \
-			  actions/rrr.c \
-			  actions/sa.c \
-			  actions/sb.c \
-			  actions/ss.c \
-			  actions/swap.c \
-			  algorithms/radix.c \
-			  algorithms/simple.c
+SRC_BONUS       = bonus/gnl/get_next_line.c \
+                  bonus/gnl/get_next_line_utils.c \
+                  bonus/apply_move_bonus.c \
+                  bonus/checker_bonus.c \
+                  bonus/checker_utils_bonus.c \
+                  bonus/ft_split_bonus.c \
+                  bonus/lst_utils_bonus.c
 
-SRC_BONUS = $(wildcard $(BON_DIR)/*.c) \
-			$(wildcard $(BON_DIR)/gnl/*.c) \
-			$(wildcard $(BON_DIR)/actions/*.c)
-
-OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
+# Aquí mapeamos cada .c a su respectiva carpeta de objetos separada
+OBJS            = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJ_BONUS       = $(addprefix $(OBJ_BONUS_DIR)/, $(SRC_BONUS:.c=.o))
 
 all: $(NAME)
-
-$(NAME): $(OBJ)
-	ar rcs $@ $^
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
-
-# USAGE: make test ARG="--bench 1 3 2 5 4"
-test: all main.c
-	$(CC) $(CFLAGS) $(CINCLUDES) main.c $(NAME) -o test_push_swap
 	$(MAKE) clean
-	@if [ -n "$(ARG)" ]; then \
-		./test_push_swap $(ARG); \
-	else \
-		./test_push_swap 1 3 2 5 4; \
-	fi
-# 	./test_push_swap 1 2 3 4 5
 
-
-$(NAME_BONUS): $(OBJ_BONUS)
-	ar rcs $@ $^
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(CINCLUDES) $(OBJS) -o $(NAME)
 
 bonus: $(NAME_BONUS)
-
-test_bonus: bonus
-	$(CC) $(CFLAGS) $(CINCLUDES) $(NAME_BONUS) -o test_checker
 	$(MAKE) clean
-	@if [ -n "$(ARG)" ]; then \
-		./test_push_swap $(ARG) | ./test_checker $(ARG); \
-	else \
-		./test_push_swap 1 3 2 5 4 | ./test_checker 1 3 2 5 4; \
-	fi
+	
 
-memtest: all main.c
-	$(CC) $(CFLAGS) $(CINCLUDES) main.c $(NAME) -o test_push_swap
-	$(MAKE) clean
-	valgrind --leak-check=full --track-origins=yes --error-limit=no --show-leak-kinds=all -s ./test_push_swap 1 3 2 5 4
+$(NAME_BONUS): $(OBJ_BONUS)
+	$(CC) $(CFLAGS) $(CINCLUDES) $(OBJ_BONUS) -o $(NAME_BONUS)
+
+# Regla de compilación para el programa obligatorio (va a OBJ_DIR)
+$(OBJ_DIR)/%.o: %.c
+	@$(MKDIR) $(dir $@)
+	$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
+
+# Regla de compilación para el bonus (va a OBJ_BONUS_DIR)
+$(OBJ_BONUS_DIR)/%.o: %.c
+	@$(MKDIR) $(dir $@)
+	$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
-	rm -f $(OBJ_BONUS)
+	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJ_BONUS_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re test bonus test_bonus
+.PHONY: all clean fclean re bonus
