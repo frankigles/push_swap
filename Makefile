@@ -1,7 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/06/18 23:07:45 by jmielcar          #+#    #+#              #
+#    Updated: 2026/06/18 23:07:47 by jmielcar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME            = push_swap
 NAME_BONUS      = checker
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -g 
+CFLAGS          = -Wall -Wextra -Werror -g
 RM              = rm -rf
 MKDIR           = mkdir -p
 
@@ -31,6 +43,7 @@ SRCS            = actions/pa.c \
                   algorithms/insert_sort.utils.c \
                   algorithms/algo_utils.c \
                   algorithms/chunk_sort.c \
+				  algorithms/simple.c \
                   ft_printf/ft_print_utils.c \
                   ft_printf/ft_printf.c \
                   bench.c \
@@ -62,7 +75,7 @@ $(NAME): $(OBJS)
 
 bonus: $(NAME_BONUS)
 	$(MAKE) clean
-	
+
 
 $(NAME_BONUS): $(OBJ_BONUS)
 	$(CC) $(CFLAGS) $(CINCLUDES) $(OBJ_BONUS) -o $(NAME_BONUS)

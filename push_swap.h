@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:09:55 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/11 20:14:28 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/18 22:22:16 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-// for printf
 # include <stdarg.h>
 
 typedef struct s_flags
@@ -106,6 +105,9 @@ float	compute_disorder(t_list **stack_a);
 void	print_bench(float disorder, t_flags *flags);
 
 /* ALGORITHMs */
+
+// simple.c
+void	ft_simple(t_list **stack_a, t_list **stack_b, t_flags *flags);
 
 // algo_utils.c
 int		find_min_val(t_list *stack);

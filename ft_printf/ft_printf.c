@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:45:26 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/09 21:27:35 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/18 23:40:38 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	convert(char spec, va_list *arg, int fd)
 	if (spec == 'c')
 	{
 		c = va_arg(*arg, int);
-		return (write(1, &c, fd));
+		return (write(fd, &c, 1));
 	}
 	if (spec == '%')
-		return (write(1, "%", fd));
+		return (write(fd, "%", 1));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 20:57:09 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/11 20:12:17 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/18 22:23:49 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	rot_both(t_list **a, t_list **b, t_list *cheapest, t_flags *f)
 
 /*
 ** Rotates a single stack ('a' or 'b') until the target node reaches the top.
-** Uses the sign of get_moves (positive = forward/ra/rb, negative = reverse/rra/rrb).
+** Uses the sign of get_moves (pos = forward/ra/rb, neg = reverse/rra/rrb).
 */
 
 void	rot_stack(t_list **s, t_list *target, char name, t_flags *f)
@@ -70,7 +70,7 @@ void	rot_stack(t_list **s, t_list *target, char name, t_flags *f)
 (the one that requires the least total rotations in both stacks),
 then performs the rotations and push. */
 
-// Optimization: Simultaneously rotate both stacks if moving in the same direction
+// Optimization: Simultaneously rotate both stacks if moving in the same direct
 // rot_both(stack_a, stack_b, cheapest, flags);
 // Rot stack_a till cheapest on top which we push to stack_b;
 // rot_stack(stack_a, cheapest, 'a', flags);
@@ -104,9 +104,12 @@ void	push_cheapest(t_list **stack_a, t_list **stack_b, t_flags *flags)
 /*
 ** Main Min/Max Sort (Turk Sort) Algorithm Control Flow:
 ** 1. Seed Stack B with 2 elements to establish a min/max baseline.
-** 2. Phase 1 (A -> B): Greedily push elements to B, maintaining a rough descending order.
-** 3. Phase 2 (B -> A): Safely bring the correct insertion spot to the top of A and push back.
-** 4. Clean up: Final shift to ensure the absolute smallest value is on top of Stack A.
+** 2. Phase 1 (A -> B): Greedily push elements to B, maintaining
+** a rough descending order.
+** 3. Phase 2 (B -> A): Safely bring the correct
+** insertion spot to the top of A and push back.
+** 4. Clean up: Final shift to ensure the absolute
+** smallest value is on top of Stack A.
 */
 
 /* rot_stack(stack_a, target, 'a', flags)

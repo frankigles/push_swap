@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 18:30:44 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/11 20:09:29 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/18 22:24:19 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ t_list	*find_max(t_list *stack)
 /*
 ** Finds the correct landing spot for a node in the opposite stack.
 ** Mode 'b' (Phase 1: A -> B): Finds the CLOSEST SMALLER number in B.
-** Why? We want Stack B sorted DESCENDING (largest at top) so it's easy to push back.
-** Fallback: If the value is smaller than anything in B, it belongs on top of the MAX value.
+** Why? We want Stack B sorted DESCENDING (largest at top) so it's easy
+** to push back.
+** Fallback: If the value is smaller than anything in B, it belongs on top
+** of the MAX value.
 ** Mode 'a' (Phase 2: B -> A): Finds the CLOSEST BIGGER number in A.
 ** Why? We want Stack A sorted ASCENDING (smallest at top).
-** Fallback: If the value is bigger than anything in A, it belongs on top of the MIN value.
+** Fallback: If the value is bigger than anything in A, it belongs on top
+** of the MIN value.
 */
 // (mode == 'b' && curr->val < val)
 // Targets the closest smaller number in B for Phase 1
