@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:23 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/18 22:26:32 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:16:08 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,32 @@ void	free_stack(t_list **stack)
 int	init(t_list **stack, char **argv, t_flags *flags)
 {
 	int		i;
+	int		allocated;
 
 	argv = parse_flags(argv, flags);
 	if (!*argv)
 		return (0);
+	allocated = 0;
 	if (argv[1] == NULL)
+	{
 		argv = ft_split(*argv, ' ');
-	if (!argv)
-		return (0);
+		if (!argv)
+			return (0);
+		allocated = 1;
+	}
 	i = 0;
 	while (argv[i])
 	{
 		if (!ft_isnum(argv[i]) || !ft_lstadd_back(stack, argv[i]))
+		{
+			if(allocated)
+				free_string(argv);
+			free_stack(stack);
 			return (0);
+		}
 		i++;
 	}
-	if (argv[1] == NULL)
+	if (allocated)
 		free_string(argv);
 	return (1);
 }
@@ -96,7 +106,10 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	if (!init(&stack_a, argv, &flags))
+	{
+		free_stack(&stack_a);
 		return (handle_error("Error"), -1);
+	}
 	disorder = compute_disorder(&stack_a);
 	if (!is_sorted(&stack_a))
 		alg_sele(&stack_a, &stack_b, disorder, &flags);
