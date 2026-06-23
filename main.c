@@ -19,7 +19,7 @@ static void	handle_error(char *msg)
 	i = 0;
 	while (msg[i])
 		write(2, &msg[i++], 1);
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 	exit(1);
 }
 
