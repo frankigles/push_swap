@@ -6,7 +6,7 @@
 /*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:23 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 21:16:08 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:44:55 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	handle_error(char *msg)
 
 	i = 0;
 	while (msg[i])
-		write(1, &msg[i++], 1);
+		write(2, &msg[i++], 1);
 	write(1, "\n", 1);
-	exit(0);
+	exit(1);
 }
 
 void	free_stack(t_list **stack)

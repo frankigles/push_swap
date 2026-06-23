@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_move_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 20:30:33 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/08 20:53:19 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:46:54 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,12 @@ void	apply_move(t_list **stack_a, t_list **stack_b, char *move)
 	{
 		rev_rotate(stack_a);
 		rev_rotate(stack_b);
+	}
+	else
+	{
+		write(2, "Error\n", 6);
+		free_stack(stack_a);
+		free_stack(stack_b);
+		exit(1);
 	}
 }
