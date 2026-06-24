@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:23 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 23:08:53 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/24 22:40:12 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	handle_error(char *msg)
+void	handle_error(char *msg)
 {
 	int	i;
 
@@ -51,8 +51,8 @@ int	init(t_list **stack, char **argv, t_flags *flags)
 	allocated = 0;
 	if (argv[1] == NULL && ++allocated)
 		argv = ft_split(*argv, ' ');
-	if (!argv)
-		return (0);
+	if (!argv || !argv[0])
+		return (free_string(argv), 0);
 	i = 0;
 	while (argv[i])
 	{

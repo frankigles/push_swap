@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:09:55 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/18 22:22:16 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/24 22:40:23 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	free_string(char **str);
 
 // main.c
 void	free_stack(t_list **stack);
+void	handle_error(char *msg);
 
 // ACTIONS
 int		swap(t_list **stack);

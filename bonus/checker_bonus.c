@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 17:56:39 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 23:08:47 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/24 23:01:24 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	init(t_list **stack, char **argv)
 	allocated = 0;
 	if (argv[1] == NULL && ++allocated)
 		argv = ft_split(*argv, ' ');
-	if (!argv)
-		return (0);
+	if (!argv || !argv[0])
+		return (free_string(argv), 0);
 	i = 0;
 	while (argv[i])
 	{
