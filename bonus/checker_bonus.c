@@ -3,31 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 17:56:39 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 22:04:39 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:08:47 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 #include "gnl/get_next_line.h"
 
-void	free_stack_bonus(t_list **stack)
+void	apply_move(t_list **stack_a, t_list **stack_b, char *move)
 {
-	t_list	*current;
-	t_list	*next;
-
-	if (!stack || !*stack)
-		return ;
-	current = *stack;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*stack = NULL;
+	if (!ft_strcmp(move, "sa"))
+		swap_top(stack_a);
+	else if (!ft_strcmp(move, "sb"))
+		swap_top(stack_b);
+	else if (!ft_strcmp(move, "pa"))
+		push(stack_a, stack_b);
+	else if (!ft_strcmp(move, "pb"))
+		push(stack_b, stack_a);
+	else if (!ft_strcmp(move, "ra"))
+		rotate(stack_a);
+	else if (!ft_strcmp(move, "rb"))
+		rotate(stack_b);
+	else if (!ft_strcmp(move, "rra"))
+		rev_rotate(stack_a);
+	else if (!ft_strcmp(move, "rrb"))
+		rev_rotate(stack_b);
+	else
+		apply_double_move(stack_a, stack_b, move);
 }
 
 int	is_sorted(t_list **stack)
@@ -53,22 +58,19 @@ int	init(t_list **stack, char **argv)
 
 	if (!*argv)
 		return (0);
-	if (argv[1] == NULL)
-	{
+	allocated = 0;
+	if (argv[1] == NULL && ++allocated)
 		argv = ft_split(*argv, ' ');
-		if (!argv)
-			return (0);
-		allocated = 1;
-	}
+	if (!argv)
+		return (0);
 	i = 0;
 	while (argv[i])
 	{
 		if (!ft_isnum(argv[i]) || !ft_lstadd_back(stack, argv[i]))
 		{
-			if(allocated)
+			if (allocated)
 				free_string(argv);
-			free_stack(stack);
-			return (0);
+			return (free_stack(stack), 0);
 		}
 		i++;
 	}
@@ -91,12 +93,8 @@ void	checker(t_list **stack_a, t_list **stack_b)
 		while (line[i] && line[i] != '\n')
 			i++;
 		line[i] = '\0';
-		if (line[0] == '\0')
-		{
-			free(line);
-			continue ;
-		}
-		apply_move(stack_a, stack_b, line);
+		if (line[0] != '\0')
+			apply_move(stack_a, stack_b, line);
 		free(line);
 	}
 	if (is_sorted(stack_a) && !(*stack_b))
@@ -110,11 +108,8 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 
-	if (argc < 2)
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
+	if (argc == 1)
+		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
 	argv++;
@@ -124,7 +119,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	checker(&stack_a, &stack_b);
-	free_stack_bonus(&stack_a);
-	free_stack_bonus(&stack_b);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }

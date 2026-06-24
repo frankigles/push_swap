@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_disorder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 19:23:57 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 21:19:55 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:08:50 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ float	compute_disorder(t_list **stack_a)
 		}
 		curr = curr->next;
 	}
-	if(total_pairs == 0)
+	if (total_pairs == 0)
 		return (0.0);
 	return ((float) mistakes / total_pairs);
 }

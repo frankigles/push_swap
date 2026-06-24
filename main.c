@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:23 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 21:54:04 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:08:53 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,18 @@ int	init(t_list **stack, char **argv, t_flags *flags)
 	if (!*argv)
 		return (0);
 	allocated = 0;
-	if (argv[1] == NULL)
-	{
+	if (argv[1] == NULL && ++allocated)
 		argv = ft_split(*argv, ' ');
-		if (!argv)
-			return (0);
-		allocated = 1;
-	}
+	if (!argv)
+		return (0);
 	i = 0;
 	while (argv[i])
 	{
 		if (!ft_isnum(argv[i]) || !ft_lstadd_back(stack, argv[i]))
 		{
-			if(allocated)
+			if (allocated)
 				free_string(argv);
-			free_stack(stack);
-			return (0);
+			return (free_stack(stack), 0);
 		}
 		i++;
 	}

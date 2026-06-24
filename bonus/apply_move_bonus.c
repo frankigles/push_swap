@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   apply_move_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 20:30:33 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/23 21:46:54 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:08:29 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-static void	swap_top(t_list **stack)
+void	swap_top(t_list **stack)
 {
 	int	tmp;
 
@@ -23,7 +23,7 @@ static void	swap_top(t_list **stack)
 	(*stack)->next->val = tmp;
 }
 
-static void	push(t_list **dst, t_list **src)
+void	push(t_list **dst, t_list **src)
 {
 	t_list	*tmp;
 
@@ -35,7 +35,7 @@ static void	push(t_list **dst, t_list **src)
 	*dst = tmp;
 }
 
-static void	rotate(t_list **stack)
+void	rotate(t_list **stack)
 {
 	t_list	*first;
 	t_list	*last;
@@ -51,7 +51,7 @@ static void	rotate(t_list **stack)
 	first->next = NULL;
 }
 
-static void	rev_rotate(t_list **stack)
+void	rev_rotate(t_list **stack)
 {
 	t_list	*prev;
 	t_list	*last;
@@ -70,28 +70,18 @@ static void	rev_rotate(t_list **stack)
 	*stack = last;
 }
 
-void	apply_move(t_list **stack_a, t_list **stack_b, char *move)
+void	apply_double_move(t_list **stack_a, t_list **stack_b, char *move)
 {
-	if (!ft_strcmp(move, "sa"))
+	if (!ft_strcmp(move, "ss"))
+	{
 		swap_top(stack_a);
-	else if (!ft_strcmp(move, "sb"))
 		swap_top(stack_b);
-	else if (!ft_strcmp(move, "ss"))
-		return (swap_top(stack_a), swap_top(stack_b));
-	else if (!ft_strcmp(move, "pa"))
-		push(stack_a, stack_b);
-	else if (!ft_strcmp(move, "pb"))
-		push(stack_b, stack_a);
-	else if (!ft_strcmp(move, "ra"))
-		rotate(stack_a);
-	else if (!ft_strcmp(move, "rb"))
-		rotate(stack_b);
+	}
 	else if (!ft_strcmp(move, "rr"))
-		return (rotate(stack_a), rotate(stack_b));
-	else if (!ft_strcmp(move, "rra"))
-		rev_rotate(stack_a);
-	else if (!ft_strcmp(move, "rrb"))
-		rev_rotate(stack_b);
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+	}
 	else if (!ft_strcmp(move, "rrr"))
 	{
 		rev_rotate(stack_a);

@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 18:05:31 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/09 20:12:48 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:04:53 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	free_string(char **str);
 int		ft_lstadd_back(t_list **stack, char *c);
 
 // apply_move.c
-void	apply_move(t_list **stack_a, t_list **stack_b, char *move);
+// void	apply_move(t_list **stack_a, t_list **stack_b, char *move);
+void	push(t_list **dst, t_list **src);
+void	rotate(t_list **stack);
+void	swap_top(t_list **stack);
+void	rev_rotate(t_list **stack);
+void	apply_double_move(t_list **stack_a, t_list **stack_b, char *move);
 
 #endif
