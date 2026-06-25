@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 20:58:50 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/10 17:53:14 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/25 23:13:23 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ int	ft_isnum(char *num)
 	int	i;
 
 	i = 0;
+	if (!num || !num[0])
+		return (0);
 	if (num[0] == '-')
 		i++;
+	if (!num[i])
+		return (0);
 	while (num[i])
 	{
 		if (num[i] < '0' || num[i] > '9')
