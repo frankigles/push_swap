@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:23 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/24 22:40:12 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/25 22:40:55 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,60 @@ void	free_stack(t_list **stack)
 int	init(t_list **stack, char **argv, t_flags *flags)
 {
 	int		i;
-	int		allocated;
+	int		j;
+	char	**split_args;
 
 	argv = parse_flags(argv, flags);
-	if (!*argv)
+	if (!argv || !*argv)
 		return (0);
-	allocated = 0;
-	if (argv[1] == NULL && ++allocated)
-		argv = ft_split(*argv, ' ');
-	if (!argv || !argv[0])
-		return (free_string(argv), 0);
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_isnum(argv[i]) || !ft_lstadd_back(stack, argv[i]))
-		{
-			if (allocated)
-				free_string(argv);
+		split_args = ft_split(argv[i], ' ');
+		if (!split_args)
 			return (free_stack(stack), 0);
+		j = 0;
+		while (split_args[j])
+		{
+			if (!ft_isnum(split_args[j])
+				|| !ft_lstadd_back(stack, split_args[j]))
+				return (free_string(split_args), free_stack(stack), 0);
+			j++;
 		}
+		free_string(split_args);
 		i++;
 	}
-	if (allocated)
-		free_string(argv);
 	return (1);
 }
+
+// int	init(t_list **stack, char **argv, t_flags *flags)
+// {
+// 	int		i;
+// 	int		allocated;
+
+// 	argv = parse_flags(argv, flags);
+// 	if (!*argv)
+// 		return (0);
+// 	allocated = 0;
+// 	if (argv[1] == NULL && ++allocated)
+// 		argv = ft_split(*argv, ' ');
+// 	if (!argv || !argv[0])
+// 		return (free_string(argv), 0);
+// 	i = 0;
+// 	while (argv[i])
+// 	{
+// 		if (!ft_isnum(argv[i]) || !ft_lstadd_back(stack, argv[i]))
+// 		{
+// 			if (allocated)
+// 				free_string(argv);
+// 			return (free_stack(stack), 0);
+// 		}
+// 		i++;
+// 	}
+// 	if (allocated)
+// 		free_string(argv);
+// 	return (1);
+// }
 
 		// insert_sort(stack_a, stack_b, flags);
 

@@ -6,7 +6,7 @@
 /*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 20:00:37 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/09 20:12:58 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/25 22:35:01 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_lstadd_back(t_list **stack, char *c)
 	long	num;
 
 	num = ft_atoi(c);
-	if (num < -2147483647 || num > 2147483647 || ft_lsthas(*stack, (int)num))
+	if (num < -2147483648 || num > 2147483647 || ft_lsthas(*stack, (int)num))
 		return (0);
 	new_node = ft_lstnew(num);
 	if (!new_node)

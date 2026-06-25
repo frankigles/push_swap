@@ -6,14 +6,14 @@
 #    By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/18 23:07:45 by jmielcar          #+#    #+#              #
-#    Updated: 2026/06/18 23:07:47 by jmielcar         ###   ########.fr        #
+#    Updated: 2026/06/25 21:48:03 by jmielcar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME            = push_swap
 NAME_BONUS      = checker
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -g
+CFLAGS          = -Wall -Wextra -Werror
 RM              = rm -rf
 MKDIR           = mkdir -p
 

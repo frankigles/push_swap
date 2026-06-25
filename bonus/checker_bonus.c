@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 17:56:39 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/24 23:01:24 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/25 22:37:21 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,28 @@ int	is_sorted(t_list **stack)
 int	init(t_list **stack, char **argv)
 {
 	int		i;
-	int		allocated;
+	int		j;
+	char	**split_args;
 
-	if (!*argv)
+	if (!argv || !*argv)
 		return (0);
-	allocated = 0;
-	if (argv[1] == NULL && ++allocated)
-		argv = ft_split(*argv, ' ');
-	if (!argv || !argv[0])
-		return (free_string(argv), 0);
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_isnum(argv[i]) || !ft_lstadd_back(stack, argv[i]))
-		{
-			if (allocated)
-				free_string(argv);
+		split_args = ft_split(argv[i], ' ');
+		if (!split_args)
 			return (free_stack(stack), 0);
+		j = 0;
+		while (split_args[j])
+		{
+			if (!ft_isnum(split_args[j])
+				|| !ft_lstadd_back(stack, split_args[j]))
+				return (free_string(split_args), free_stack(stack), 0);
+			j++;
 		}
+		free_string(split_args);
 		i++;
 	}
-	if (allocated)
-		free_string(argv);
 	return (1);
 }
 

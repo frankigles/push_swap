@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:11:38 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/24 22:59:48 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/25 17:34:51 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

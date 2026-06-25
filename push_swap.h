@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:09:55 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/24 22:40:23 by fraigles         ###   ########.fr       */
+/*   Updated: 2026/06/25 17:34:41 by jmielcar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
