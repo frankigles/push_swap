@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 17:56:39 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/25 22:37:21 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/25 23:27:11 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,27 @@ int	init(t_list **stack, char **argv)
 {
 	int		i;
 	int		j;
-	char	**split_args;
+	char	**split_ar;
 
 	if (!argv || !*argv)
 		return (0);
 	i = 0;
 	while (argv[i])
 	{
-		split_args = ft_split(argv[i], ' ');
-		if (!split_args)
-			return (free_stack(stack), 0);
+		split_ar = ft_split(argv[i++], ' ');
+		if (!split_ar[0])
+			return (free_string(split_ar), free_stack(stack), 0);
 		j = 0;
-		while (split_args[j])
+		while (split_ar[j])
 		{
-			if (!ft_isnum(split_args[j])
-				|| !ft_lstadd_back(stack, split_args[j]))
-				return (free_string(split_args), free_stack(stack), 0);
+			if (!ft_isnum(split_ar[j]) || !ft_lstadd_back(stack, split_ar[j]))
+				return (free_string(split_ar), free_stack(stack), 0);
 			j++;
 		}
-		free_string(split_args);
-		i++;
+		free_string(split_ar);
 	}
+	if (!*stack)
+		return (0);
 	return (1);
 }
 

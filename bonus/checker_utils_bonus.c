@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmielcar <jmielcar@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fraigles <fraigles@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 19:57:31 by jmielcar          #+#    #+#             */
-/*   Updated: 2026/06/11 20:35:58 by jmielcar         ###   ########.fr       */
+/*   Updated: 2026/06/25 23:28:38 by fraigles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ int	ft_isnum(char *num)
 	int	i;
 
 	i = 0;
+	if (!num || !num[0])
+		return (0);
 	if (num[0] == '-')
 		i++;
+	if (!num[i])
+		return (0);
 	while (num[i])
 	{
 		if (num[i] < '0' || num[i] > '9')
